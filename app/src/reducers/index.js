@@ -3,7 +3,7 @@ import * as actions from "../actions";
 
 const initialState = {
 
-    quote: "Bible quote of the day",
+    quote: "",
     isFetching: false,
     error: ""
 
