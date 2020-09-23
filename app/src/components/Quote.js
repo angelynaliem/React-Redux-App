@@ -18,9 +18,9 @@ if (props.isFetching) {
 }
 
 return (
-    <div>
-        <h1>{props.quote}</h1>
-        <button onClick={props.getQuote}>Get a new quote</button>
+    <div className="mainContainer">
+        <h1 className="quote">{props.quote}</h1>
+        <button className="button" onClick={props.getQuote}>Next Quote</button>
     </div>
 )
 
