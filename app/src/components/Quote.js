@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { getQuote } from "../actions";
 
 const Quote = (props) => {
 
-const dispatch = useDispatch();
+// const dispatch = useDispatch();
+// const quotes = useSelector( state => state.data )
 
 useEffect(() => {
-    dispatch(getQuote());
+   props.getQuote();
 
-    const quotes = useSelector( state => state.data.verse.details.text )
-
-}, [getQuote])
+}, [props.getQuote])
 
 if (props.isFetching) {
     return <p>Loading...</p>
@@ -19,11 +19,17 @@ if (props.isFetching) {
 
 return (
     <div>
-        <h1>{quotes}</h1>
-        <button onClick={getQuote}>Get a new quote</button>
+        <h1>{props.quote}</h1>
+        <button onClick={props.getQuote}>Get a new quote</button>
     </div>
 )
 
 }
 
-export default Quote
+const mapStateToProps = (state) => {
+    return { quote: state.quote, isFetching: state.isFetching }
+}
+
+const mapDispatchToProps = { getQuote } 
+
+export default connect(mapStateToProps, mapDispatchToProps)(Quote);

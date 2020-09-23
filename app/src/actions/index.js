@@ -4,6 +4,13 @@ export const QUOTE_FETCHING = "QUOTE_FETCHING";
 export const QUOTE_FETCHED = "QUOTE_FETCHED";
 export const QUOTE_ERROR = "QUOTE_ERROR";
 
+
+const headers = {
+    Accept: "application/json"
+}
+
+const proxyurl = "https://cors-anywhere.herokuapp.com/";
+
 export const getQuote = () => (dispatch) => {
 
     console.log("getQuote action")
@@ -11,11 +18,13 @@ export const getQuote = () => (dispatch) => {
     dispatch({ type: QUOTE_FETCHING })
 
     axios
-    .get("http://www.ourmanna.com/verses/api/get?format=text&order=random")
+    .get(proxyurl + "http://www.ourmanna.com/verses/api/get?format=text&order=random", 
+    // { headers: headers }
+    )
     .then((res) => {
         dispatch({ 
             type: QUOTE_FETCHED, 
-            payload: res.data.verse.details.text 
+            payload: res.data
         })
         console.log("API response: ", res)
     })
