@@ -14,7 +14,7 @@ useEffect(() => {
 }, [props.getQuote])
 
 if (props.isFetching) {
-    return <p>Loading...</p>
+    return <div className="loading"></div>
 }
 
 return (
